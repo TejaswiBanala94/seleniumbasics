@@ -1,27 +1,44 @@
-package basicsofselenium;
+package fb_source;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class Login_to_Facebook {
-
-	public static void main(String[] args) 
-	{
-		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://www.facebook.com");
-		driver.manage().window().maximize();
-		WebElement  username = driver.findElement(By.id("email"));
-		username.sendKeys("banalatejaswi@gmail.com");
-		WebElement password = driver.findElement(By.id("pass"));
-		password.sendKeys("Automationbatch@42");
-		WebElement loginbutton = driver.findElement(By.name("login"));
-		//loginbutton.sendKeys(Keys.ENTER);
-		loginbutton.click();
-		
+public class Login_to_facebook 
+{
+	ChromeDriver driver;
+	//locating each elements using @findBY
+	@FindBy(id="email")
+	WebElement emailid_un;
 	
-
+	@FindBy(name="pass")
+	WebElement password;
+	
+	@FindBy(xpath="//button[@name='login']")
+	WebElement login_button;
+	
+	//each elements should have separate methods
+	
+	public void un()
+	{
+		emailid_un.sendKeys("banalatejaswi555@gmail.com");
 	}
-
+	public void pwd()
+	{
+		password.sendKeys("btechfriends");
+	}
+	public void login()
+	{
+		login_button.click();
+	}
+	//initialize the elements using pagefactory class
+	
+	public Login_to_facebook(ChromeDriver driver)
+	{
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	
 }
